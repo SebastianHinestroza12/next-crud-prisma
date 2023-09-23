@@ -1,16 +1,16 @@
 import React, { Fragment } from "react"
-import axios from "axios"
 import { prisma } from "@/libs/prisma"
+import { CardTask } from "@/components/CardTask"
 
 const loadTasks = async () => {
   return await prisma.task.findMany()
 }
 
-export default function HomePage() {
-  const allTasks = loadTasks()
+export default async function HomePage() {
+  const allTasks = await loadTasks()
   return (
     <Fragment>
-      <div>Initial</div>
+      <CardTask listTasks={allTasks} />
     </Fragment>
   )
 }
